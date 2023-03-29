@@ -1,3 +1,6 @@
+
+{{ $array['title'] }}
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -7,4 +10,5 @@
 <body>
   <p>Hello World!!</p>
 </body>
+<h1><?php echo $array['title']; ?></h1><br>
 </html>

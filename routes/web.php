@@ -21,5 +21,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('sample', 'SampleController@index');
+// "Hello World!!"表示画面
 Route::get('sample', [SampleController::class, 'index']);
+
+// Google 検索結果 一覧表示画面
+Route::get('google_serch_list', [GoogleSerchListController::class, 'index']);
