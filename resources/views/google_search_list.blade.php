@@ -21,23 +21,32 @@
 </head>
 
 <body>
+<div>
+    <form action="{{ route('google_search.create') }}" method="POST">
+        @csrf
+        <input type="text" name="keyword" value="">
+        <input type="submit" value="検索">
+    </form>
+    </div>
     <main class="py-4">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-10">
                     <table class="table table-striped table-dark mt-5">
-                        <tr>
-                            <th>kind</th>
-                            <th>title</title></th>
-                            <th>link</th>
-                        </tr>
-                        @foreach($posts as $num)
-                        <tr>
-                            <td>{{ $num['kind'] }}</td>
-                            <td>{{ $num['title'] }}</td>
-                            <td>{{ $num['link'] }}</td>
-                        </tr>
-                        @endforeach
+                        @isset($posts)
+                            <tr>
+                                <th>kind</th>
+                                <th>title</title></th>
+                                <th>link</th>
+                            </tr>
+                            @foreach($posts as $num)
+                            <tr>
+                                <td>{{ $num['kind'] }}</td>
+                                <td>{{ $num['title'] }}</td>
+                                <td>{{ $num['link'] }}</td>
+                            </tr>
+                            @endforeach
+                        @endisset
                     </table>
                 </div>
             </div>
