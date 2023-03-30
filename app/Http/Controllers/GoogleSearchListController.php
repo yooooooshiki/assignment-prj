@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\File;
 
 class GoogleSearchListController extends Controller
 {
@@ -26,6 +27,7 @@ class GoogleSearchListController extends Controller
             ['kind' => 'customsearch#result', 'title' => '貓- Wiktionary', 'link' => 'https://play.google.com/store/apps/details?id=jp.colopl.wcat&hl=en_US']
         */
 
+        /*
         // バリデーションチェック
         $request->validate([
             'keyword' => 'required',
@@ -45,7 +47,13 @@ class GoogleSearchListController extends Controller
         $response_body = json_decode($response_body, true);
 
         //レスポンスボディのitemsを取得
-        $posts = $response_body['items'];
+        //$posts = $response_body['items'];
+        var_dump($posts);exit;
+        */
+
+        //テストデータを使用
+        $posts = File::get('/Applications/XAMPP/xamppfiles/htdocs/assignment-prj/apidata');
+        $posts = json_decode($posts, true);
 
         //データをビューに返却
         return view('google_search_list', ['posts' => $posts]);

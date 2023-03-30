@@ -39,7 +39,7 @@
                                 <th>title</title></th>
                                 <th>link</th>
                             </tr>
-                            @foreach($posts as $num)
+                            @foreach($posts['items'] as $num)
                             <tr>
                                 <td>{{ $num['kind'] }}</td>
                                 <td>{{ $num['title'] }}</td>
