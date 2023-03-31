@@ -24,6 +24,6 @@ Route::get('/', function () {
 // "Hello World!!"表示画面
 Route::get('sample', [SampleController::class, 'index']);
 
-// Google 検索結果 一覧表示画面
+// Google検索結果一覧表示画面
 Route::get('google_search_list', [GoogleSearchListController::class, 'index'])->name('google.index');
 Route::post('/google_search_list', [GoogleSearchListController::class, 'create'])->name('google_search.create');
