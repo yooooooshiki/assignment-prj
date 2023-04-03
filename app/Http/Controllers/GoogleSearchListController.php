@@ -18,7 +18,7 @@ class GoogleSearchListController extends Controller
     // google custom search apiでの検索結果一覧取得
     public function create(Request $request)
     {
-        // バリデーションチェック
+        // 検索キーワードのバリデーションチェック
         $request->validate([
             'keyword' => 'required',
         ]);
@@ -43,13 +43,6 @@ class GoogleSearchListController extends Controller
 
         //レスポンスボディのitemsを取得
         $posts = $response_body['items'];
-
-        /*
-        //テストデータを使用
-        $posts = File::get('/Applications/XAMPP/xamppfiles/htdocs/assignment-prj/apidata');
-        $posts = json_decode($posts, true);
-        $posts = $posts['items'];
-        */
 
         //データをビューに返却
         return view('google_search_list', ['posts' => $posts]);
