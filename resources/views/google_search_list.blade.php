@@ -1,57 +1,31 @@
-<!DOCTYPE html>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-
-<body>
 <div>
     <form action="{{ route('google_search.create') }}" method="POST">
         @csrf
-        <input type="text" name="keyword" value="">
+        <p>検索キーワード：<input type="text" name="keyword" value=""></p>
+        <p>日本語のみ：<input type="radio" name="language" value="日本語" >※検索範囲の言語を日本語のみに制限する場合はチェックをしてください</p>
+
         <input type="submit" value="検索">
     </form>
-    </div>
-    <main class="py-4">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-10">
-                    <table class="table table-striped table-dark mt-5">
-                        @isset($posts)
-                            <tr>
-                                <th>kind</th>
-                                <th>title</title></th>
-                                <th>link</th>
-                            </tr>
-                            @foreach($posts as $num)
-                            <tr>
-                                <td>{{ $num['kind'] }}</td>
-                                <td>{{ $num['title'] }}</td>
-                                <td>{{ $num['link'] }}</td>
-                            </tr>
-                            @endforeach
-                        @endisset
-                    </table>
-                </div>
-            </div>
-        </div>
-    </main>
-</body>
+    @if ($errors->has('keyword'))
+        {{$errors->first('keyword')}}
+    @endif
+    <br>
 
-</html>
+@isset($posts)
+    <p><b>検索結果一覧</b></p>
+    <table border = "1">
+        <tr>
+            <th>タイトル</th>
+            <th>リンク</title></th>
+        </tr>
+        @foreach($posts as $num)
+        <tr>
+            <td>{{ $num['title'] }}</td>
+            <td>{{ $num['link'] }}</td>
+        </tr>
+        @endforeach
+    </table>
+    <p><button type="button" onclick="location.href='{{ route('google.index') }}' ">リセット</button><p>
+@endisset
+</div>
